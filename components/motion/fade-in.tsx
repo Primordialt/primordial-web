@@ -3,6 +3,11 @@
 import { m } from "framer-motion";
 import type { ReactNode } from "react";
 
+import {
+  defaultViewport,
+  duration,
+  easeOutExpo,
+} from "@/lib/design-system/motion";
 import { cn } from "@/lib/utils";
 
 type FadeInProps = {
@@ -18,11 +23,11 @@ export function FadeIn({ children, className, delay = 0, y = 24 }: FadeInProps) 
       className={cn(className)}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={defaultViewport}
       transition={{
-        duration: 0.55,
+        duration: duration.base,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: easeOutExpo,
       }}
     >
       {children}

@@ -1,16 +1,12 @@
 import type { HTMLAttributes } from "react";
 
+import {
+  sectionSpacingVariants,
+  type SectionSpacingVariants,
+} from "@/lib/design-system/spacing";
 import { cn } from "@/lib/utils";
 
-type SectionProps = HTMLAttributes<HTMLElement> & {
-  spacing?: "default" | "compact" | "hero";
-};
-
-const spacingClasses = {
-  compact: "py-12 sm:py-16",
-  default: "py-16 sm:py-20 lg:py-24",
-  hero: "py-20 sm:py-24 lg:py-32",
-} as const;
+type SectionProps = HTMLAttributes<HTMLElement> & SectionSpacingVariants;
 
 export function Section({
   className,
@@ -19,7 +15,7 @@ export function Section({
 }: SectionProps) {
   return (
     <section
-      className={cn("relative scroll-mt-24", spacingClasses[spacing], className)}
+      className={cn(sectionSpacingVariants({ spacing }), className)}
       {...props}
     />
   );

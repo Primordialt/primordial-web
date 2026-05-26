@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
+import { createPageMetadata, homepageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
-
-const siteUrl = siteConfig.url;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -14,23 +13,21 @@ export const viewport: Viewport = {
   ],
 };
 
+/** Root layout defaults — homepage uses absolute title; inner pages use template */
 export const baseMetadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.url),
+  ...createPageMetadata({
+    title: homepageSeo.title,
+    description: homepageSeo.description,
+    path: "/",
+    absoluteTitle: true,
+  }),
   title: {
-    default: `${siteConfig.name} | Future-Ready Technology Partner`,
+    default: homepageSeo.title,
     template: `%s | ${siteConfig.shortName}`,
   },
-  description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: [
-    "Primordial Technologies",
-    "enterprise software",
-    "cloud engineering",
-    "digital transformation",
-    "technology consulting",
-    "futuristic corporate technology",
-  ],
-  authors: [{ name: siteConfig.name, url: siteUrl }],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
   formatDetection: {
@@ -38,41 +35,14 @@ export const baseMetadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: siteConfig.locale,
-    url: siteUrl,
-    siteName: siteConfig.name,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} — modern technology solutions`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
   category: "technology",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon.svg" }],
+  },
+  manifest: "/manifest.webmanifest",
+  other: {
+    "geo.region": "NG",
+    "geo.placename": "Lagos",
+  },
 };

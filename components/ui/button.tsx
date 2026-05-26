@@ -11,6 +11,8 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-primary-foreground shadow-glow hover:brightness-110",
+        brand:
+          "bg-gradient-to-r from-brand-pink to-brand-green text-white shadow-glow hover:brightness-110",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -18,13 +20,17 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-muted/70 hover:text-foreground",
+        "ghost-brand":
+          "text-brand-pink hover:bg-brand-pink/10 hover:text-brand-pink",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-xl px-8",
+        sm: "h-9 rounded-md px-3 text-xs",
+        lg: "h-11 rounded-xl px-8 text-base",
+        xl: "h-12 rounded-xl px-10 text-base",
         icon: "h-10 w-10",
+        "icon-sm": "h-9 w-9",
       },
     },
     defaultVariants: {

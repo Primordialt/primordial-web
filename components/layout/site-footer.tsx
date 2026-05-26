@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/layout/main-container";
@@ -8,75 +8,109 @@ const currentYear = new Date().getFullYear();
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60 bg-card/40">
-      <MainContainer className="py-12">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div className="space-y-4">
-            <p className="font-display text-lg font-semibold tracking-tight">
-              {siteConfig.name}
+    <footer className="border-t border-border/60 bg-card/50" aria-label="Site footer">
+      <MainContainer className="py-14">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-4 lg:col-span-1">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
+              <span
+                aria-hidden
+                className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-pink to-brand-green shadow-glow"
+              >
+                <span className="size-3 rounded-full bg-primary-foreground" />
+              </span>
+              <span className="font-display text-sm font-semibold sm:text-base">
+                Primordial Technologies
+              </span>
+            </Link>
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Nigerian technology company delivering cybersecurity, software,
+              telecom infrastructure, and digital transformation for modern
+              businesses and institutions.
             </p>
-            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-              Engineering resilient digital platforms with a futuristic,
-              enterprise-grade approach to software, cloud, and product
-              innovation.
-            </p>
-          </div>
-
-          <div>
-            <p className="mb-3 text-sm font-semibold">Explore</p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              {siteConfig.nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
-                  >
-                    {item.title}
-                    <ArrowUpRight className="size-3.5 opacity-70" aria-hidden />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="mb-3 text-sm font-semibold">Connect</p>
-            <div className="flex items-center gap-3">
+            <nav aria-label="Social media links" className="flex items-center gap-3 pt-1">
               <Link
                 href={siteConfig.links.linkedin}
-                className="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-colors hover:border-brand-pink/40 hover:text-foreground"
+                className="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-all hover:border-brand-pink/40 hover:text-foreground hover:shadow-glow"
                 aria-label="LinkedIn"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <Linkedin className="size-4" aria-hidden />
               </Link>
               <Link
                 href={siteConfig.links.github}
-                className="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-colors hover:border-brand-green/40 hover:text-foreground"
+                className="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-all hover:border-brand-green/40 hover:text-foreground"
                 aria-label="GitHub"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <Github className="size-4" aria-hidden />
               </Link>
-            </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              <a
-                href={`mailto:${siteConfig.contactEmail}`}
-                className="transition-colors hover:text-foreground"
-              >
-                {siteConfig.contactEmail}
-              </a>
-            </p>
+            </nav>
           </div>
+
+          <nav aria-label="Services">
+            <p className="mb-4 text-sm font-semibold">Services</p>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
+              {siteConfig.footer.services.map((item) => (
+                <li key={item.title}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex items-center gap-1 transition-colors hover:text-brand-pink"
+                  >
+                    {item.title}
+                    <ArrowUpRight className="size-3 opacity-60" aria-hidden />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Company">
+            <p className="mb-4 text-sm font-semibold">Company</p>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
+              {siteConfig.footer.company.map((item) => (
+                <li key={item.title}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex items-center gap-1 transition-colors hover:text-brand-green"
+                  >
+                    {item.title}
+                    <ArrowUpRight className="size-3 opacity-60" aria-hidden />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <address className="not-italic">
+            <p className="mb-4 text-sm font-semibold">Contact</p>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li>
+                <a
+                  href={`mailto:${siteConfig.contactEmail}`}
+                  className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+                >
+                  <Mail className="size-4 shrink-0 text-brand-pink" aria-hidden />
+                  {siteConfig.contactEmail}
+                </a>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <MapPin className="mt-0.5 size-4 shrink-0 text-brand-green" aria-hidden />
+                {siteConfig.address}
+              </li>
+            </ul>
+          </address>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-border/60 pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          <p>Built for performance, accessibility, and scale.</p>
+          <p className="font-mono uppercase tracking-wider">
+            Cybersecurity · Telecom · Software · Digital Transformation
+          </p>
         </div>
       </MainContainer>
     </footer>

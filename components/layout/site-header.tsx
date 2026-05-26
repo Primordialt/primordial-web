@@ -25,7 +25,7 @@ export function SiteHeader() {
             aria-hidden
             className="relative flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-pink to-brand-green shadow-glow"
           >
-            <span className="size-3 rounded-full bg-white/90" />
+            <span className="size-3 rounded-full bg-primary-foreground" />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-display text-sm font-semibold tracking-tight sm:text-base">
@@ -50,10 +50,10 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
-          <Button asChild size="sm" className="hidden sm:inline-flex">
-            <Link href="#contact">Get started</Link>
+          <Button asChild size="sm" variant="brand" className="hidden sm:inline-flex">
+            <Link href="/contact">Get Consultation</Link>
           </Button>
           <Button
             variant="ghost"
@@ -87,9 +87,9 @@ export function SiteHeader() {
               {item.title}
             </Link>
           ))}
-          <Button asChild className="mt-2 w-full sm:hidden">
-            <Link href="#contact" onClick={() => setMobileOpen(false)}>
-              Get started
+          <Button asChild variant="brand" className="mt-2 w-full sm:hidden">
+            <Link href="/contact" onClick={() => setMobileOpen(false)}>
+              Get Consultation
             </Link>
           </Button>
         </MainContainer>
