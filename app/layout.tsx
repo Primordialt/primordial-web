@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 
 import { SiteShell } from "@/components/layout/site-shell";
 import { MotionProvider } from "@/components/providers/motion-provider";
@@ -30,6 +31,7 @@ export default function RootLayout({
           <MotionProvider>
             <GlobalJsonLd />
             <SiteShell>{children}</SiteShell>
+            <Analytics />
           </MotionProvider>
         </ThemeProvider>
       </body>
