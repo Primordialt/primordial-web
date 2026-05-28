@@ -1,15 +1,4 @@
-import {
-  Briefcase,
-  Cable,
-  Code2,
-  Package,
-  Palette,
-  PenTool,
-  Radio,
-  Shield,
-  Smartphone,
-  type LucideIcon,
-} from "lucide-react";
+import type { ServicePageIconKey } from "@/lib/icon-keys";
 
 export const servicesPageHero = {
   eyebrow: "Our Services",
@@ -20,7 +9,7 @@ export const servicesPageHero = {
 
 export type Service = {
   slug: string;
-  icon: LucideIcon;
+  icon: ServicePageIconKey;
   title: string;
   summary: string;
   description: string;
@@ -32,7 +21,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "it-consulting",
-    icon: Briefcase,
+    icon: "briefcase",
     title: "IT Consulting",
     summary:
       "Strategic technology advisory aligned to your business goals, risk profile, and growth roadmap.",
@@ -49,7 +38,7 @@ export const services: Service[] = [
   },
   {
     slug: "cybersecurity",
-    icon: Shield,
+    icon: "shield",
     title: "Cybersecurity",
     summary:
       "Proactive defense, threat detection, and compliance-ready security for high-risk environments.",
@@ -66,7 +55,7 @@ export const services: Service[] = [
   },
   {
     slug: "mobile-app-development",
-    icon: Smartphone,
+    icon: "smartphone",
     title: "Mobile App Development",
     summary:
       "Native and cross-platform mobile applications built for performance, security, and scale.",
@@ -83,7 +72,7 @@ export const services: Service[] = [
   },
   {
     slug: "ui-ux-design",
-    icon: Palette,
+    icon: "palette",
     title: "UI/UX Design",
     summary:
       "Human-centered interfaces that improve usability, accessibility, and conversion.",
@@ -100,7 +89,7 @@ export const services: Service[] = [
   },
   {
     slug: "branding",
-    icon: PenTool,
+    icon: "pen-tool",
     title: "Branding",
     summary:
       "Distinct brand identities that communicate trust, innovation, and market positioning.",
@@ -117,7 +106,7 @@ export const services: Service[] = [
   },
   {
     slug: "web-development",
-    icon: Code2,
+    icon: "code2",
     title: "Web Development",
     summary:
       "High-performance websites and web applications built with modern, scalable stacks.",
@@ -134,7 +123,7 @@ export const services: Service[] = [
   },
   {
     slug: "telecom-infrastructure",
-    icon: Radio,
+    icon: "radio",
     title: "Telecom Infrastructure",
     summary:
       "Carrier-grade network design, deployment, and optimization for reliable connectivity.",
@@ -151,7 +140,7 @@ export const services: Service[] = [
   },
   {
     slug: "device-supply",
-    icon: Package,
+    icon: "package",
     title: "Device Supply",
     summary:
       "Enterprise hardware procurement, configuration, and lifecycle management.",
@@ -168,7 +157,7 @@ export const services: Service[] = [
   },
   {
     slug: "fibre-optics",
-    icon: Cable,
+    icon: "cable",
     title: "Fibre Optics",
     summary:
       "High-speed fibre deployment, splicing, testing, and maintenance for lasting performance.",

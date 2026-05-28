@@ -1,9 +1,11 @@
-import { ServiceDetailSection } from "@/components/services/service-detail-section";
+import { MainContainer } from "@/components/layout/main-container";
+import { Section } from "@/components/layout/section";
+import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { ServiceDetailSections } from "@/components/services/lazy-services";
 import { ServicesCta } from "@/components/services/services-cta";
 import { ServicesGrid } from "@/components/services/services-grid";
 import { ServicesPageHero } from "@/components/services/services-page-hero";
 import { PageJsonLd } from "@/components/seo/page-json-ld";
-import { services } from "@/lib/services-content";
 import { createPageMetadata } from "@/lib/seo";
 import { servicesItemListSchema } from "@/lib/structured-data";
 
@@ -36,11 +38,19 @@ export default function ServicesPage() {
         page={{ name: title, description, path: "/services" }}
         extra={servicesItemListSchema()}
       />
+      <Section spacing="none" className="border-b border-border/40 pt-6">
+        <MainContainer>
+          <PageBreadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+            ]}
+          />
+        </MainContainer>
+      </Section>
       <ServicesPageHero />
       <ServicesGrid />
-      {services.map((service, index) => (
-        <ServiceDetailSection key={service.slug} slug={service.slug} index={index} />
-      ))}
+      <ServiceDetailSections />
       <ServicesCta />
     </>
   );

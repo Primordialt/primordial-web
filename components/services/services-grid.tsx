@@ -8,6 +8,7 @@ import { SectionShell } from "@/components/layout/section-shell";
 import { StaggerChildren, StaggerItem } from "@/components/motion/stagger-children";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { servicePageIcons } from "@/components/icons/content-icons";
 import { services } from "@/lib/services-content";
 
 export function ServicesGrid() {
@@ -22,7 +23,10 @@ export function ServicesGrid() {
       />
 
       <StaggerChildren className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
+        {services.map((service) => {
+          const ServiceIcon = servicePageIcons[service.icon];
+
+          return (
           <StaggerItem key={service.slug}>
             <Link
               href={`#${service.slug}`}
@@ -35,7 +39,7 @@ export function ServicesGrid() {
                 <CardHeader>
                   <div className="mb-4 flex items-start justify-between">
                     <div className="inline-flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-pink/15 to-brand-green/15 text-brand-pink transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow">
-                      <service.icon className="size-6" strokeWidth={1.5} aria-hidden />
+                      <ServiceIcon className="size-6" strokeWidth={1.5} aria-hidden />
                     </div>
                     <ArrowUpRight
                       className="size-5 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-pink group-hover:opacity-100"
@@ -63,7 +67,8 @@ export function ServicesGrid() {
               </Card>
             </Link>
           </StaggerItem>
-        ))}
+          );
+        })}
       </StaggerChildren>
     </SectionShell>
   );

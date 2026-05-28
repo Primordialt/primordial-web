@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
+import { brandAssets } from "@/lib/brand-assets";
 import { createPageMetadata, homepageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -36,9 +37,32 @@ export const baseMetadata: Metadata = {
     telephone: false,
   },
   category: "technology",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon.svg" }],
+    icon: [
+      { url: brandAssets.favicon, sizes: "48x48" },
+      { url: brandAssets.icons.png16, sizes: "16x16", type: "image/png" },
+      { url: brandAssets.icons.png32, sizes: "32x32", type: "image/png" },
+      { url: brandAssets.icons.png48, sizes: "48x48", type: "image/png" },
+    ],
+    apple: [
+      {
+        url: brandAssets.icons.chrome192,
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+    shortcut: [{ url: brandAssets.favicon }],
   },
   manifest: "/manifest.webmanifest",
   other: {

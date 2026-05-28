@@ -1,7 +1,10 @@
 import { JsonLdScript } from "@/components/seo/json-ld-script";
 import {
+  contactInformationSchema,
+  localBusinessSchema,
   organizationSchema,
   professionalServiceSchema,
+  serviceCatalogSchema,
   webSiteSchema,
 } from "@/lib/structured-data";
 
@@ -9,7 +12,14 @@ import {
 export function GlobalJsonLd() {
   return (
     <JsonLdScript
-      data={[organizationSchema(), webSiteSchema(), professionalServiceSchema()]}
+      data={[
+        organizationSchema(),
+        webSiteSchema(),
+        localBusinessSchema(),
+        professionalServiceSchema(),
+        serviceCatalogSchema(),
+        contactInformationSchema(),
+      ]}
     />
   );
 }

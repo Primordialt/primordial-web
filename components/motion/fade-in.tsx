@@ -3,6 +3,7 @@
 import { m } from "framer-motion";
 import type { ReactNode } from "react";
 
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import {
   defaultViewport,
   duration,
@@ -18,6 +19,12 @@ type FadeInProps = {
 };
 
 export function FadeIn({ children, className, delay = 0, y = 24 }: FadeInProps) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <m.div
       className={cn(className)}

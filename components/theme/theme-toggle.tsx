@@ -1,6 +1,5 @@
 "use client";
 
-import { m } from "framer-motion";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -34,11 +33,17 @@ export function ThemeToggle() {
 
   const activeTheme = (theme ?? "system") as ThemeMode;
   const isDark = resolvedTheme === "dark";
+  const activeIndex = modes.findIndex((mode) => mode.value === activeTheme);
+
+  const moveSelection = (direction: 1 | -1) => {
+    const nextIndex = (activeIndex + direction + modes.length) % modes.length;
+    setTheme(modes[nextIndex].value);
+  };
 
   return (
     <div
       className="flex items-center rounded-lg border border-border/60 bg-muted/40 p-0.5 backdrop-blur-sm"
-      role="group"
+      role="radiogroup"
       aria-label="Color theme"
     >
       {modes.map(({ value, label, icon: Icon }) => {
@@ -50,25 +55,30 @@ export function ThemeToggle() {
             type="button"
             variant="ghost"
             size="icon-sm"
+            role="radio"
             aria-label={label}
-            aria-pressed={isActive}
+            aria-checked={isActive}
+            tabIndex={isActive ? 0 : -1}
             className={cn(
               "relative size-8 rounded-md transition-colors",
-              isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+              isActive
+                ? "bg-background text-foreground shadow-sm ring-1 ring-border/60"
+                : "text-muted-foreground hover:text-foreground",
             )}
             onClick={() => setTheme(value)}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+                event.preventDefault();
+                moveSelection(1);
+              } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+                event.preventDefault();
+                moveSelection(-1);
+              }
+            }}
           >
-            {isActive ? (
-              <m.span
-                layoutId="theme-toggle-indicator"
-                className="absolute inset-0 rounded-md bg-background shadow-sm ring-1 ring-border/60"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                aria-hidden
-              />
-            ) : null}
             <Icon
               className={cn(
-                "relative z-10 size-4 transition-transform duration-300",
+                "size-4 transition-transform duration-300",
                 isActive && value === "light" && "text-amber-500",
                 isActive && value === "dark" && "text-brand-pink",
                 isActive && value === "system" && "text-brand-green",

@@ -37,7 +37,7 @@ export function WorkingProcessSection() {
                 <span className="font-mono text-sm font-semibold text-brand-pink">
                   {step.step}
                 </span>
-                <Heading level="h4" className="mt-3">
+                <Heading level="h3" className="mt-3">
                   {step.title}
                 </Heading>
                 <Text variant="small" tone="muted" className="mt-2">

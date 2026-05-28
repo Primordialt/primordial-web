@@ -1,8 +1,7 @@
 "use client";
 
-import { m, AnimatePresence } from "framer-motion";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { FloatingField, FloatingInput, FloatingSelect, FloatingTextarea } from "@/components/ui/floating-field";
 import { Button } from "@/components/ui/button";
@@ -27,10 +26,18 @@ const initialForm: ContactFormData = {
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export function ContactForm() {
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [form, setForm] = useState<ContactFormData>(initialForm);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!hasErrors(errors)) return;
+
+    const firstInvalid = formRef.current?.querySelector<HTMLElement>("[aria-invalid='true']");
+    firstInvalid?.focus();
+  }, [errors]);
 
   const updateField = (field: keyof ContactFormData, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -81,16 +88,11 @@ export function ContactForm() {
 
   return (
     <div className="relative">
-      <AnimatePresence mode="wait">
-        {status === "success" ? (
-          <m.div
-            key="success"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            className="flex flex-col items-center rounded-2xl border border-brand-green/30 bg-brand-green/5 px-6 py-12 text-center"
-            role="status"
-          >
+      {status === "success" ? (
+        <div
+          className="flex flex-col items-center rounded-2xl border border-brand-green/30 bg-brand-green/5 px-6 py-12 text-center"
+          role="status"
+        >
             <CheckCircle2 className="size-12 text-brand-green" aria-hidden />
             <h3 className="mt-4 font-display text-xl font-semibold">Message sent successfully</h3>
             <p className="mt-2 max-w-sm text-sm text-muted-foreground">
@@ -105,26 +107,27 @@ export function ContactForm() {
             >
               Send another message
             </Button>
-          </m.div>
-        ) : (
-          <m.form
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          </div>
+      ) : (
+          <form
+            ref={formRef}
             onSubmit={handleSubmit}
             noValidate
             className="space-y-5"
+            aria-label="Contact form"
+            aria-busy={status === "submitting"}
           >
+            <p className="sr-only" aria-live="polite">
+              {status === "submitting" && "Sending your message."}
+            </p>
             {submitError && status === "error" ? (
-              <m.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
+              <div
                 className="flex items-start gap-3 rounded-lg border border-destructive/40 bg-destructive/10 p-4 text-sm text-destructive"
                 role="alert"
               >
                 <AlertCircle className="mt-0.5 size-5 shrink-0" aria-hidden />
                 <p>{submitError}</p>
-              </m.div>
+              </div>
             ) : null}
 
             <div className="grid gap-5 sm:grid-cols-2">
@@ -159,6 +162,7 @@ export function ContactForm() {
                   onChange={(e) => updateField("email", e.target.value)}
                   error={!!errors.email}
                   autoComplete="email"
+                  aria-describedby={errors.email ? "email-error" : undefined}
                 />
               </FloatingField>
             </div>
@@ -178,6 +182,7 @@ export function ContactForm() {
                   onChange={(e) => updateField("phone", e.target.value)}
                   error={!!errors.phone}
                   autoComplete="tel"
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
                 />
               </FloatingField>
 
@@ -194,6 +199,7 @@ export function ContactForm() {
                   onChange={(e) => updateField("company", e.target.value)}
                   error={!!errors.company}
                   autoComplete="organization"
+                  aria-describedby={errors.company ? "company-error" : undefined}
                 />
               </FloatingField>
             </div>
@@ -210,6 +216,7 @@ export function ContactForm() {
                 value={form.service}
                 onChange={(e) => updateField("service", e.target.value)}
                 error={!!errors.service}
+                aria-describedby={errors.service ? "service-error" : undefined}
                 className={cn(
                   !form.service && "text-transparent",
                   form.service && "is-filled text-foreground",
@@ -240,6 +247,7 @@ export function ContactForm() {
                 onChange={(e) => updateField("message", e.target.value)}
                 error={!!errors.message}
                 maxLength={2000}
+                aria-describedby={errors.message ? "message-error" : "message-hint"}
               />
             </FloatingField>
 
@@ -262,9 +270,8 @@ export function ContactForm() {
                 </>
               )}
             </Button>
-          </m.form>
+          </form>
         )}
-      </AnimatePresence>
     </div>
   );
 }

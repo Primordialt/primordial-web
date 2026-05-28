@@ -8,14 +8,12 @@ import { SectionShell } from "@/components/layout/section-shell";
 import { Stack } from "@/components/layout/stack";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Button } from "@/components/ui/button";
-import { FormField } from "@/components/ui/form-field";
-import { Input } from "@/components/ui/input";
 import { finalCta } from "@/lib/homepage-content";
 import { siteConfig } from "@/lib/site-config";
 
 export function FinalCtaSection() {
   return (
-    <SectionShell id="contact" spacing="spacious" containerSize="wide">
+    <SectionShell id="get-in-touch" spacing="spacious" containerSize="wide">
       <FadeIn>
         <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-gradient-to-br from-brand-pink/10 via-card to-brand-green/10 p-8 sm:p-12 lg:p-16">
           <div
@@ -50,42 +48,42 @@ export function FinalCtaSection() {
               </Stack>
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-brand-pink"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-brand-pink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <Mail className="size-4" aria-hidden />
                 {siteConfig.contactEmail}
               </a>
             </Stack>
 
-            <form
+            <aside
               className="rounded-2xl border border-border/60 bg-background/80 p-6 backdrop-blur-sm sm:p-8"
-              action={`mailto:${siteConfig.contactEmail}`}
-              method="post"
-              encType="text/plain"
+              aria-labelledby="cta-contact-heading"
             >
               <Stack gap="md">
-                <p className="font-display text-lg font-semibold">Quick inquiry</p>
-                <FormField label="Full name" htmlFor="cta-name" required>
-                  <Input id="cta-name" name="name" placeholder="Your name" required />
-                </FormField>
-                <FormField label="Work email" htmlFor="cta-email" required>
-                  <Input
-                    id="cta-email"
-                    name="email"
-                    type="email"
-                    placeholder="you@company.com"
-                    required
-                  />
-                </FormField>
-                <FormField label="Company" htmlFor="cta-company">
-                  <Input id="cta-company" name="company" placeholder="Organization name" />
-                </FormField>
-                <Button type="submit" variant="brand" className="w-full">
-                  Submit request
-                  <ArrowRight className="size-4" aria-hidden />
+                <Heading level="h3" id="cta-contact-heading">
+                  Start your project
+                </Heading>
+                <Text variant="small" tone="muted">
+                  Tell us about your cybersecurity, software, or telecom needs. Our
+                  team responds within one business day.
+                </Text>
+                <Button asChild variant="brand" className="w-full">
+                  <Link href="/contact">
+                    Go to contact form
+                    <ArrowRight className="size-4" aria-hidden />
+                  </Link>
                 </Button>
+                <p className="text-center text-sm text-muted-foreground">
+                  Or call{" "}
+                  <a
+                    href={siteConfig.phoneHref}
+                    className="font-medium text-foreground underline-offset-4 hover:text-brand-pink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {siteConfig.phone}
+                  </a>
+                </p>
               </Stack>
-            </form>
+            </aside>
           </div>
         </div>
       </FadeIn>

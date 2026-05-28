@@ -30,6 +30,9 @@ Copy `.env.example` to `.env.local` and set your production URL:
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
 
+For Vercel, set `NEXT_PUBLIC_SITE_URL` in Project Settings -> Environment Variables
+for Production and Preview environments.
+
 ## Project structure
 
 ```text

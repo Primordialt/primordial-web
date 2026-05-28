@@ -6,6 +6,9 @@ import {
   type ContactFormData,
 } from "@/lib/contact-validation";
 
+export const runtime = "edge";
+export const preferredRegion = "global";
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ContactFormData;
@@ -14,7 +17,12 @@ export async function POST(request: Request) {
     if (hasErrors(errors)) {
       return NextResponse.json(
         { message: "Validation failed.", errors },
-        { status: 400 },
+        {
+          status: 400,
+          headers: {
+            "Cache-Control": "no-store",
+          },
+        },
       );
     }
 
@@ -29,12 +37,22 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { message: "Your message has been received. We will be in touch shortly." },
-      { status: 200 },
+      {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      },
     );
   } catch {
     return NextResponse.json(
       { message: "Invalid request. Please try again." },
-      { status: 500 },
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      },
     );
   }
 }

@@ -113,6 +113,7 @@ export const FloatingSelect = React.forwardRef<HTMLSelectElement, FloatingSelect
   ({ className, error, children, ...props }, ref) => (
     <select
       ref={ref}
+      aria-invalid={error || undefined}
       className={cn(
         floatingInputClassName,
         "appearance-none bg-[length:1rem] bg-[right_0.75rem_center] bg-no-repeat pr-10",

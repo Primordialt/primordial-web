@@ -1,6 +1,7 @@
 "use client";
 
-import { m, type HTMLMotionProps } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
+import { m } from "framer-motion";
 
 import {
   defaultViewport,

@@ -54,7 +54,7 @@ export function AnimatedTimeline({ items, className }: AnimatedTimelineProps) {
               <span className="font-mono text-sm font-semibold text-brand-green">
                 {item.year}
               </span>
-              <Heading level="h4" className="mt-2">
+              <Heading level="h3" className="mt-2">
                 {item.title}
               </Heading>
               <Text variant="small" tone="muted" className="mt-2">

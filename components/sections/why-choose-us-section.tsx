@@ -30,7 +30,7 @@ export function WhyChooseUsSection() {
               <div className="mb-4 inline-flex size-10 items-center justify-center rounded-lg bg-brand-green/15 text-brand-green transition-transform group-hover:scale-110">
                 <Zap className="size-5" aria-hidden />
               </div>
-              <Heading level="h4" className="mb-2">
+              <Heading level="h3" className="mb-2">
                 {item.title}
               </Heading>
               <Text variant="small" tone="muted">

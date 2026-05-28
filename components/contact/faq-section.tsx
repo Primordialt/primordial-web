@@ -2,13 +2,11 @@
 
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
 
 import { SectionHeader } from "@/components/layout/section-header";
 import { SectionShell } from "@/components/layout/section-shell";
 import { faqItems } from "@/lib/contact-content";
 import { cn } from "@/lib/utils";
-import { easeOutExpo } from "@/lib/design-system/motion";
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -53,23 +51,21 @@ export function FaqSection() {
                   aria-hidden
                 />
               </button>
-              <AnimatePresence initial={false}>
-                {isOpen ? (
-                  <m.div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: easeOutExpo }}
-                  >
-                    <p className="border-t border-border/60 px-5 pb-4 pt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {item.answer}
-                    </p>
-                  </m.div>
-                ) : null}
-              </AnimatePresence>
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={buttonId}
+                className={cn(
+                  "grid transition-[grid-template-rows,opacity] duration-300",
+                  isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                )}
+              >
+                <div className="overflow-hidden">
+                  <p className="border-t border-border/60 px-5 pb-4 pt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
             </div>
           );
         })}

@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <ThemeInitScript />
       </head>
-      <body className={`${fontVariables} min-h-screen antialiased`}>
+      <body className={`${fontVariables} flex min-h-screen flex-col antialiased`}>
         <ThemeProvider>
           <ThemeColorSync />
           <MotionProvider>

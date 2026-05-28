@@ -2,7 +2,6 @@
 
 import { MessageCircle } from "lucide-react";
 import Link from "next/link";
-import { m } from "framer-motion";
 
 import { contactInfo } from "@/lib/contact-content";
 import { cn } from "@/lib/utils";
@@ -21,12 +20,7 @@ export function WhatsAppCta({ variant = "banner", className }: WhatsAppCtaProps)
 
   if (variant === "floating") {
     return (
-      <m.div
-        className={cn("fixed bottom-6 right-6 z-40", className)}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1, type: "spring", stiffness: 260, damping: 20 }}
-      >
+      <div className={cn("fixed bottom-6 right-6 z-40", className)}>
         <Link
           href={href}
           target="_blank"
@@ -37,16 +31,12 @@ export function WhatsAppCta({ variant = "banner", className }: WhatsAppCtaProps)
           <MessageCircle className="size-5" aria-hidden />
           <span className="hidden sm:inline">WhatsApp</span>
         </Link>
-      </m.div>
+      </div>
     );
   }
 
   return (
-    <m.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5 }}
+    <div
       className={cn(
         "relative overflow-hidden rounded-2xl border border-[#25D366]/30 bg-gradient-to-r from-[#25D366]/10 via-card to-[#25D366]/5 p-6 sm:p-8",
         className,
@@ -70,12 +60,12 @@ export function WhatsAppCta({ variant = "banner", className }: WhatsAppCtaProps)
           href={href}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-all hover:brightness-110 sm:w-auto"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 text-sm font-semibold text-[#052e16] transition-all hover:brightness-110 sm:w-auto"
         >
           <MessageCircle className="size-4" aria-hidden />
           Start WhatsApp Chat
         </Link>
       </div>
-    </m.div>
+    </div>
   );
 }

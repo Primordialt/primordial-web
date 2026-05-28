@@ -6,7 +6,7 @@ import Link from "next/link";
 import { SectionShell } from "@/components/layout/section-shell";
 import { Stack } from "@/components/layout/stack";
 import { FadeIn } from "@/components/motion/fade-in";
-import { ContactForm } from "@/components/contact/contact-form";
+import { ContactForm } from "@/components/contact/lazy-contact";
 import { Card } from "@/components/ui/card";
 import { Heading, Text } from "@/components/design-system";
 import { contactInfo } from "@/lib/contact-content";
@@ -45,7 +45,7 @@ export function ContactInfoSection() {
         <FadeIn>
           <Stack gap="lg">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-green">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground/80">
                 Get in touch
               </p>
               <Heading level="h2" className="mt-3">

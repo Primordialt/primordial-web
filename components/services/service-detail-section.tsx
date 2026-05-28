@@ -10,6 +10,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { servicePageIcons } from "@/components/icons/content-icons";
 import { services } from "@/lib/services-content";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +24,7 @@ export function ServiceDetailSection({ slug, index }: ServiceDetailSectionProps)
   if (!service) return null;
 
   const isReversed = index % 2 === 1;
-  const Icon = service.icon;
+  const Icon = servicePageIcons[service.icon];
 
   return (
     <SectionShell

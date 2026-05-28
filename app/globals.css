@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
+/* Match next-themes `attribute="class"` — not OS prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── Primordial Technologies — Design System Tokens ─── */
 
 :root {
   /* Brand */
   --brand-pink: #ed1d7e;
-  --brand-green: #0c8140;
+  --brand-green: #0a6b36;
   --brand-pink-rgb: 237 29 126;
   --brand-green-rgb: 12 129 64;
 

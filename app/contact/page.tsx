@@ -1,8 +1,13 @@
+import { MainContainer } from "@/components/layout/main-container";
+import { Section } from "@/components/layout/section";
+import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
 import { ContactInfoSection } from "@/components/contact/contact-info-section";
 import { ContactPageHero } from "@/components/contact/contact-page-hero";
-import { FaqSection } from "@/components/contact/faq-section";
-import { MapSection } from "@/components/contact/map-section";
-import { WhatsAppCta } from "@/components/contact/whatsapp-cta";
+import {
+  FaqSection,
+  MapSection,
+  WhatsAppCta,
+} from "@/components/contact/lazy-contact";
 import { SectionShell } from "@/components/layout/section-shell";
 import { PageJsonLd } from "@/components/seo/page-json-ld";
 import { faqItems } from "@/lib/contact-content";
@@ -36,6 +41,16 @@ export default function ContactPage() {
         page={{ name: title, description, path: "/contact" }}
         extra={[contactPageSchema(), faqPageSchema(faqItems)]}
       />
+      <Section spacing="none" className="border-b border-border/40 pt-6">
+        <MainContainer>
+          <PageBreadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Contact", href: "/contact" },
+            ]}
+          />
+        </MainContainer>
+      </Section>
       <ContactPageHero />
       <ContactInfoSection />
       <SectionShell containerSize="narrow" spacing="compact">

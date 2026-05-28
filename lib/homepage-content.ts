@@ -1,16 +1,4 @@
-import {
-  Building2,
-  Code2,
-  Factory,
-  Globe2,
-  Landmark,
-  Radio,
-  Server,
-  Shield,
-  Smartphone,
-  Wifi,
-  type LucideIcon,
-} from "lucide-react";
+import type { HomepageIndustryIconKey, HomepageServiceIconKey } from "@/lib/icon-keys";
 
 export const heroContent = {
   eyebrow: "Nigerian Technology Company",
@@ -42,54 +30,61 @@ export const aboutPreview = {
 } as const;
 
 export type ServiceItem = {
-  icon: LucideIcon;
+  icon: HomepageServiceIconKey;
   title: string;
   description: string;
   tags: string[];
+  href: string;
 };
 
 export const services: ServiceItem[] = [
   {
-    icon: Shield,
+    icon: "shield",
     title: "Cybersecurity Services",
     description:
       "Protect critical assets with managed detection, penetration testing, security audits, and incident response tailored for high-risk environments.",
     tags: ["SOC", "MDR", "Compliance"],
+    href: "/services#cybersecurity",
   },
   {
-    icon: Code2,
+    icon: "code2",
     title: "Software Development",
     description:
       "Design and build scalable web platforms, internal systems, and customer-facing applications with modern, maintainable architectures.",
     tags: ["Web Apps", "APIs", "Cloud"],
+    href: "/services#web-development",
   },
   {
-    icon: Radio,
+    icon: "radio",
     title: "Telecom Infrastructure",
     description:
       "Plan, deploy, and optimize network infrastructure for carriers, enterprises, and institutions requiring reliable connectivity at scale.",
     tags: ["Fiber", "Wireless", "Core Network"],
+    href: "/services#telecom-infrastructure",
   },
   {
-    icon: Server,
+    icon: "server",
     title: "IT Solutions & Support",
     description:
       "Managed IT services, infrastructure modernization, cloud migration, and round-the-clock technical support for business continuity.",
     tags: ["Cloud", "Helpdesk", "Infra"],
+    href: "/services#it-consulting",
   },
   {
-    icon: Globe2,
+    icon: "globe2",
     title: "Digital Transformation",
     description:
       "Strategy, process digitization, and technology roadmaps that align leadership vision with measurable operational improvement.",
     tags: ["Strategy", "Automation", "Analytics"],
+    href: "/services#branding",
   },
   {
-    icon: Wifi,
+    icon: "wifi",
     title: "Network & Connectivity",
     description:
       "Enterprise LAN/WAN design, SD-WAN, secure remote access, and performance monitoring for distributed teams and sites.",
     tags: ["SD-WAN", "VPN", "Monitoring"],
+    href: "/services#fibre-optics",
   },
 ];
 
@@ -117,34 +112,34 @@ export const whyChooseUs = [
 ];
 
 export type IndustryItem = {
-  icon: LucideIcon;
+  icon: HomepageIndustryIconKey;
   name: string;
   description: string;
 };
 
 export const industries: IndustryItem[] = [
   {
-    icon: Landmark,
+    icon: "landmark",
     name: "Government",
     description: "Secure digital services and infrastructure for public institutions.",
   },
   {
-    icon: Building2,
+    icon: "building2",
     name: "Financial Services",
     description: "Compliance-ready platforms and fraud-resistant architectures.",
   },
   {
-    icon: Factory,
+    icon: "factory",
     name: "Manufacturing",
     description: "OT/IT convergence, IoT connectivity, and operational dashboards.",
   },
   {
-    icon: Smartphone,
+    icon: "smartphone",
     name: "Telecommunications",
     description: "Core network, billing integrations, and subscriber experience systems.",
   },
   {
-    icon: Globe2,
+    icon: "globe2",
     name: "Enterprise & SME",
     description: "Scalable IT, cloud, and software for growing Nigerian businesses.",
   },

@@ -2,15 +2,39 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/lib/site-config";
 
-const routes: Array<{
+type PublicSitemapRoute = {
   path: string;
   changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"];
   priority: number;
-}> = [
-  { path: "", changeFrequency: "weekly", priority: 1 },
-  { path: "/about", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/services", changeFrequency: "weekly", priority: 0.95 },
-  { path: "/contact", changeFrequency: "monthly", priority: 0.9 },
+};
+
+/** Public, indexable routes only. */
+const routes: PublicSitemapRoute[] = [
+  {
+    path: "",
+    changeFrequency: "weekly",
+    priority: 1,
+  },
+  {
+    path: "/about",
+    changeFrequency: "monthly",
+    priority: 0.9,
+  },
+  {
+    path: "/services",
+    changeFrequency: "weekly",
+    priority: 0.95,
+  },
+  {
+    path: "/projects",
+    changeFrequency: "monthly",
+    priority: 0.9,
+  },
+  {
+    path: "/contact",
+    changeFrequency: "monthly",
+    priority: 0.9,
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -29,7 +29,11 @@ export function getCanonicalUrl(path: string): string {
 }
 
 export function getOgImageUrl(): string {
-  return `${siteConfig.url}/opengraph-image`;
+  return `${siteConfig.url}${siteConfig.ogImage}`;
+}
+
+export function getTwitterImageUrl(): string {
+  return `${siteConfig.url}${siteConfig.twitterImage}`;
 }
 
 type CreatePageMetadataOptions = {
@@ -56,6 +60,7 @@ export function createPageMetadata({
   const canonical = path === "/" ? "/" : path;
   const url = getCanonicalUrl(path);
   const ogImage = getOgImageUrl();
+  const twitterImage = getTwitterImageUrl();
 
   return {
     title: absoluteTitle ? { absolute: title } : title,
@@ -76,7 +81,7 @@ export function createPageMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: `${title} | ${siteConfig.shortName}`,
+          alt: `${title} — ${siteConfig.shortName}`,
           type: "image/png",
         },
       ],
@@ -85,7 +90,10 @@ export function createPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage],
+      images: {
+        url: twitterImage,
+        alt: `${title} — ${siteConfig.shortName}`,
+      },
       creator: "@primordialtech",
       site: "@primordialtech",
     },

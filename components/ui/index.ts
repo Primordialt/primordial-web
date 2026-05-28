@@ -12,5 +12,4 @@ export {
 export { FormField } from "@/components/ui/form-field";
 export { Input, inputVariants } from "@/components/ui/input";
 export { Label, labelVariants } from "@/components/ui/label";
-export { Separator } from "@/components/ui/separator";
 export { Textarea } from "@/components/ui/textarea";

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { MainContainer } from "@/components/layout/main-container";
+import { Section } from "@/components/layout/section";
 import { AboutPageHero } from "@/components/about/about-page-hero";
+import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
 import { CompanyIntroSection } from "@/components/about/company-intro-section";
 import { CompanyGoalsSection } from "@/components/about/company-goals-section";
 import { CoreValuesSection } from "@/components/about/core-values-section";
 import { MissionVisionSection } from "@/components/about/mission-vision-section";
-import { MainContainer } from "@/components/layout/main-container";
-import { Section } from "@/components/layout/section";
 import { PageJsonLd } from "@/components/seo/page-json-ld";
 import { Button } from "@/components/ui/button";
 import { createPageMetadata } from "@/lib/seo";
@@ -37,6 +38,16 @@ export default function AboutPage() {
         ]}
         page={{ name: title, description, path: "/about" }}
       />
+      <Section spacing="none" className="border-b border-border/40 pt-6">
+        <MainContainer>
+          <PageBreadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "About", href: "/about" },
+            ]}
+          />
+        </MainContainer>
+      </Section>
       <AboutPageHero />
       <CompanyIntroSection />
       <MissionVisionSection />
