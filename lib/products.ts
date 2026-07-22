@@ -30,7 +30,7 @@ export const products: Product[] = [
     image: '/lobatan/logo-light.svg',
     currency: 'NGN',
     price: '39,750',
-    paymentUrl: 'https://example.com/pay/fibre',
+    paymentUrl: 'https://paystack.shop/pay/i8j3m8l9ah',
   },
   {
     id: 'ngnix-ssl',
