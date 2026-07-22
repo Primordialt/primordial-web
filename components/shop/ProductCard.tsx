@@ -1,5 +1,4 @@
 "use client";
-import React from 'react';
 import { Product } from '@/lib/products';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -23,8 +22,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden bg-gradient-to-br from-pink-200/10 to-green-200/6 flex items-center justify-center">
           {product.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={product.image} alt={product.title} loading="lazy" className="w-full h-full object-cover" />
+            <Image src={product.image} alt={product.title} width={80} height={80} className="w-full h-full object-cover" />
           ) : (
             <div className="text-sm text-white/60">Image</div>
           )}

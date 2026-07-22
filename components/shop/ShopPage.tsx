@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
-import { products as allProducts, Product, categories } from '@/lib/products';
+import { useMemo, useState } from 'react';
+import { products as allProducts, categories } from '@/lib/products';
 import ShopHero from './ShopHero';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
