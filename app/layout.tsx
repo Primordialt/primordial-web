@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
 
-import { SiteShell } from "@/components/layout/site-shell";
+import { SiteAnalytics } from "@/components/analytics/site-analytics";
 import { MotionProvider } from "@/components/providers/motion-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { GlobalJsonLd } from "@/components/seo/json-ld";
@@ -30,8 +29,8 @@ export default function RootLayout({
           <ThemeColorSync />
           <MotionProvider>
             <GlobalJsonLd />
-            <SiteShell>{children}</SiteShell>
-            <Analytics />
+            {children}
+            <SiteAnalytics />
           </MotionProvider>
         </ThemeProvider>
       </body>

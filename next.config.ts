@@ -53,6 +53,20 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/internet",
+        headers: [
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+      {
+        source: "/internet/:path*",
+        headers: [
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: securityHeaders,
       },

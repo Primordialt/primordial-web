@@ -1,6 +1,7 @@
 import { ArrowRight, Home } from "lucide-react";
 import Link from "next/link";
 
+import { SiteShell } from "@/components/layout/site-shell";
 import { MainContainer } from "@/components/layout/main-container";
 import { Button } from "@/components/ui/button";
 import { createPageMetadata } from "@/lib/seo";
@@ -15,7 +16,8 @@ export const metadata = createPageMetadata({
 
 export default function NotFound() {
   return (
-    <MainContainer className="flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
+    <SiteShell>
+      <MainContainer className="flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
       <p className="font-mono text-sm font-semibold uppercase tracking-widest text-brand-pink">
         404
       </p>
@@ -55,5 +57,6 @@ export default function NotFound() {
         </Link>
       </nav>
     </MainContainer>
+    </SiteShell>
   );
 }
